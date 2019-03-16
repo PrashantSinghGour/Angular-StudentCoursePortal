@@ -1,0 +1,75 @@
+
+<nav class="navbar navbar-dark bg-light">
+    <div class="container">
+      <div class="navbad-header">
+          <h3 style="color:#17a2b8;font-family:helvetica;"><b>Student Info</b></h3>
+          <p Style="color:#17a2b8;font-family:helvetica;"><b>Admin Page</b></p>
+      </div>    
+  </div>
+  </nav>
+
+  <form class="form-inline col-6">
+        <input class="form-control" name="searchInput" placeholder="Search Students into DataBase" #searchInput="ngModel" [(ngModel)]="searchText" style="width: 80%;">
+        <button class="btn btn-outline-info" (click)="searchText=''">Clear</button>
+  </form>
+  <div class="container">
+    <div class="form">
+      <div class="form-group">
+        
+        <h4 Style="color:#17a2b8;font-family:helvetica;"><br><br>Student Details</h4>
+      </div>
+      <div *ngFor="let post of posts">
+        <br>
+        <nav class="novi" *ngIf="(filterCondition(post.data) || filterCondition1(post.data))"> 
+
+      
+            <div class="row">
+                 <div class="col-md-2">
+                   <div class="form-group">
+                       <img [src]="post.data.img" class="rounded-circle"  alt="passpost_size_Image"  width="132" height="160">
+                   </div>
+                 </div>
+               <div class="col-md-5">         
+                 <div class="form-group">            
+                         <div class="coloumn">
+                             <p Style="color:#17a2b8;font-family:helvetica;font-size: 20px">Name:{{post.data.fname}} <span></span> {{post.data.lname}} </p>
+                         </div>
+                  
+                         <div class="coloumn">
+                            <p Style="color:#17a2b8;font-family:helvetica;font-size: 20px">Age:{{Age(post.data.DOB)}}</p>
+                            
+                         </div>
+      
+     
+                       <div class="coloumn">
+                         <p Style="color:#17a2b8;font-family:helvetica;font-size: 20px">Telephone:{{post.data.Telephone}}</p>
+                       </div>
+     
+                       <div class="coloumn">
+                        <p Style="color:#17a2b8;font-family:helvetica;font-size: 20px">E-mail:{{post.data.Email}}</p>
+                       </div>
+                 </div>
+             </div>
+             <div class="col-md-5">
+               <div class="form-group">
+                 <div class="coloumn">
+                     <p Style="color:#17a2b8;font-family:helvetica;font-size: 20px">SSC %:{{SSC(post.data.marks101,post.data.marks102)  | number : '1.2-2'}}</p>
+                   </div>
+                   <div class="coloumn">
+                       <p Style="color:#17a2b8;font-family:helvetica;font-size: 20px">HSC %:{{SSC(post.data.marks201,post.data.marks102)  | number : '1.2-2'}}</p>
+                     </div>
+                     <div class="coloumn">
+                       <br><br> <button class="btn btn-outline-danger" id="{{post.id}}" (click)="deletePost(post.id, post.data.fileref)">Cancel Addmission</button>
+                      </div>
+             </div>
+           </div>
+           </div>
+            
+           </nav>
+         
+      </div><!--Recursive-->
+    </div>
+  </div>
+
+  
+     

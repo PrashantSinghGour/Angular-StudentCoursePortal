@@ -1,0 +1,155 @@
+<div class="container-fluid">
+<nav class="navbar navbar-dark bg-light">
+    <div class="navbad-header">      
+        <h3 style="color:#17a2b8;font-family:helvetica;"><b>Student Courses Portal</b></h3>
+        <p Style="color:#17a2b8;font-family:helvetica;"><b>Learn With Your Pace</b></p>
+      </div> 
+
+      <div>
+        <a routerLink="/main-page" ><button style="margin-right:20px" type="button" class="btn btn-outline-info">Home</button></a>
+           <a routerLink="/signin" ><button style="margin-right:20px" type="button"  class="btn btn-outline-info" >Sign in</button></a>
+      </div> 
+</nav>
+<nav> <div class="alert alert-info"  *ngIf="showSuccessMessage" style="text-align: center;">
+    Data gets Submitted to Database.
+</div></nav>
+
+<div class="container">
+<form [formGroup]="this.portalService.SignUp" (ngSubmit)="addPost(this.portalService.SignUp.value)">
+    
+  <div class="form-group">
+    <h3 style="color:#17a2b8;font-family:helvetica;"><br><b>Please Fill The Details Appropriately.</b></h3>
+  </div>
+
+  <div class="form-group">
+      <h5 style="color:#17a2b8;font-family:helvetica;">Personal Details</h5>
+
+      
+      <div class="row">
+          <div class="col-6">
+                  <label for="fname">Name </label>
+                  <input type="text" class="form-control" formControlName="fname" [ngClass]="{'is-invalid':submitted && formControls.fname.errors}">
+                  <small class="invalid-feedback"  *ngIf="submitted && formControls.fname.errors">First Name is required<br></small>
+              <span class="help-block"><font size="2">First Name</font></span>
+            </div>
+
+           
+
+            <div class="col-6">
+              <label for="lname"><br></label>
+              <input type="text" class="form-control" formControlName="lname" [ngClass]="{'is-invalid':submitted && formControls.lname.errors}">
+                  <small class="invalid-feedback"  *ngIf="submitted && formControls.lname.errors">Last Name is required<br></small>
+              <span class="help-block"><font size="2">Last Name</font></span>
+            </div>
+          </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+        <div class="col-6">
+            <label for="Email">E-mail</label>
+            <input type="email" class="form-control" formControlName="Email" [ngClass]="{'is-invalid':submitted && formControls.Email.errors}">  
+            <small class="invalid-feedback"  *ngIf="submitted && formControls.Email.errors">Email is required<br></small>  
+        </div>
+
+        <div class="col-6">
+            <label for="Telephone">Phone</label>
+            <input type="tel" class="form-control" formControlName="Telephone" [ngClass]="{'is-invalid':submitted && formControls.Telephone.errors}" >  
+            <small class="invalid-feedback"  *ngIf="submitted && formControls.Email.errors">Phone Number is required<br></small>
+        </div>
+    </div>
+  </div>
+ 
+  <div class="form-group">
+    <div class="row">
+        <div class="col-6">
+            <label for="pass1">Enter Password</label>
+           <input type="password" class="form-control" formControlName="password" [ngClass]="{'is-invalid':submitted && formControls.password.errors}">               
+           <small class="invalid-feedback"  *ngIf="submitted && formControls.password.errors">password is required<br></small>
+          </div>
+
+        <div class="col-6"> 
+            <label for="pass2">Confirm Password</label> 
+                 <input type="password" [class.is-invalid]="this.portalService.SignUp.errors?.misMatch" formControlName="confirmPassword" class="form-control">
+                <small class="text-danger" *ngIf="this.portalService.SignUp.errors?.misMatch">Passwords do not match</small>
+        </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label>Upload Image</label>
+      <div class="input-group" >
+          <div class="input-group-prepend" >
+            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+          </div>
+          <div class="custom-file" style="color:#17a2b8;">
+            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" (change)="handleInput($event)" formControlName="img" [ngClass]="{'is-invalid':submitted && formControls.img.errors}">
+            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+          </div>
+        </div>
+        
+        <small>Passport Size Image</small>
+        <small class="invalid-feedback"  *ngIf="submitted && formControls.img.errors">Image Not selected<br></small>
+  </div>
+
+  <div class="col-md-6">
+    <label>Date Of Birth</label>
+    <input type="date" class="form-control" formControlName="DOB" name="dateofbirth" id="dateofbirth" [ngClass]="{'is-invalid':submitted && formControls.DOB.errors}">
+    <small class="invalid-feedback"  *ngIf="submitted && formControls.fname.errors">Date of Birth Required<br></small>
+  </div>
+</div>
+
+
+  <div class="form-group">
+    <h5 style="color:#17a2b8;font-family:helvetica;">SSC Marks</h5>
+    <div class="row">
+      <div class="col-md-4">
+          <label >Marks Obtained</label>
+          <input [(ngModel)]="marks101"  type="text" class="form-control" formControlName="marks101" [ngClass]="{'is-invalid':submitted && formControls.marks101.errors}">  
+          <small class="invalid-feedback"  *ngIf="submitted && formControls.marks101.errors">Field required<br></small>  
+      </div>
+      <div class="col-md-4">
+          <label >Total Marks</label>
+          <input [(ngModel)]="marks102"  type="text" class="form-control" formControlName="marks102" [ngClass]="{'is-invalid':submitted && formControls.marks102.errors}">  
+          <small class="invalid-feedback"  *ngIf="submitted && formControls.marks102.errors">Field required<br></small>
+      </div>
+      <div class="col-md-4">
+          <label >Percentage %</label>
+          <input  type="number"  placeholder="Percentage" value="{{Add(marks101,marks102)  | number : '1.2-3'}}" class="form-control" disabled> 
+         
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+      <h5 style="color:#17a2b8;font-family:helvetica;">HSC Marks</h5>
+      <div class="row">
+        <div class="col-md-4">
+            <label >Marks Obtained</label>
+            <input [(ngModel)]="marks201"  type="text" class="form-control" formControlName="marks201" [ngClass]="{'is-invalid':submitted && formControls.marks201.errors}">  
+            <small class="invalid-feedback"  *ngIf="submitted && formControls.marks201.errors">Field required<br></small>  
+        </div>
+        <div class="col-md-4">
+            <label >Total Marks</label>
+            <input [(ngModel)]="marks202"  type="text" class="form-control" formControlName="marks202" [ngClass]="{'is-invalid':submitted && formControls.marks201.errors}">  
+            <small class="invalid-feedback"  *ngIf="submitted && formControls.marks202.errors">Field required<br></small>
+        </div>
+        <div class="col-md-4">
+            <label>Percentage %</label>
+            <input type="number"  placeholder="Percentage" value="{{Add(marks201,marks202)  | number : '1.2-3'}}" class="form-control" disabled> 
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+        <div style="text-align: center">
+            <button type="submit" class="btn btn-outline-info" >Submit</button>
+        </div>
+</div>
+</form>
+</div>
+</div>

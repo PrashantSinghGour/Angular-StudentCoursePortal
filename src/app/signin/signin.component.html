@@ -1,0 +1,97 @@
+
+<nav class="navbar navbar-dark bg-light">
+    <div class="container">
+      <div class="navbad-header">
+          <h3 style="color:#17a2b8;font-family:helvetica;"><b>Student Courses Portal</b></h3>
+          <p Style="color:#17a2b8;font-family:helvetica;"><b>Learn With Your Pace</b></p>
+      </div>
+      <div>
+        <a routerLink="/main-page" ><button style="margin-right:20px" type="button" class="btn btn-outline-info">Home</button></a>
+           <a routerLink="/signup" ><button style="margin-right:20px" type="button"  class="btn btn-outline-info" >Sign Up</button></a>
+      </div>  
+     
+  </div>
+  </nav>
+
+
+  <br>
+ 
+<div class="col-md-5 center-block">
+  
+   <h4 style="color:#17a2b8;">Welcome back,</h4>
+  <br>
+   <form [formGroup]="this.UAService.Form" (ngSubmit)="onSubmit()">
+        
+        <div class="form-group" >
+          
+              <label for="Email">E-mail</label>
+            <input [ngClass]="{'is-invalid':submitted && formControls.Email.errors}" type="Email" class="form-control" formControlName="Email" >  
+            <small class="invalid-feedback" *ngIf="submitted && formControls.Email.errors">Email is required<br></small>  
+          
+          </div>
+        
+        <div class="form-group">
+          <label for="pass1">Enter Password</label>
+          <input [ngClass]="{'is-invalid':submitted && formControls.Password.errors}" type="Password" class="form-control" formControlName="Password" >               
+          <small class="invalid-feedback" *ngIf="submitted && formControls.Password.errors">Password is required<br></small>
+        
+        </div>
+        <div class="form-group" >
+            <div style="text-align: center">
+            <button type="submit" style="text-align:center;"  class="btn btn-outline-info">Sign in</button>
+        </div>
+        
+      </div>
+        <div class="form-group">
+            <a href="#" class="ForgetPwd" Style="color:#17a2b8;font-family:helvetica;">Forget Password?</a>
+        </div>
+    </form>
+</div>
+
+
+<footer class="section footer-classic context-dark bg-image" style="background: #2d3246;">
+    <div class="container">
+      <div class="row row-30">
+        <div class="col-md-4 col-xl-5">
+          <div class="pr-xl-4">
+            <br>
+            <p>We are Best in the market for providing online tutorials.</p>
+            <!-- Rights-->
+            <p class="rights"><span>©  </span><span class="copyright-year">2019</span><span> </span><span>Student Course Portal</span><span>. </span><span>All Rights Reserved.</span></p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <br>
+          <h5>Contacts</h5>
+          <dl class="contact-list">
+            <dt>Address:</dt>
+            <dd>Flat 404,4th Floor,Laxmi Heights,BT Kawde Road,Pune,Maharashtra.</dd>
+          </dl>
+          <dl class="contact-list">
+            <dt>E-mail:</dt>
+            <dd><a href="mailto:#">prashantsinghgour@gmail.com</a></dd>
+          </dl>
+          <dl class="contact-list">
+            <dt>Phones:</dt>
+            <dd><a href="tel:#">+91-8668212510</a>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-md-4 col-xl-3">
+          <br>
+          <h5>Links</h5>
+          <ul class="contact-list">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Projects</a></li>
+           <li><a routerLink="/admin" >Admin</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row no-gutters social-container">
+      <div class="col"><a class="social-inner" href="https://www.facebook.com/psg95" target="_blank"><span class="fa fa-facebook"></span></a></div>
+      <div class="col"><a class="social-inner" href="https://www.instagram.com/__prashantsingh" target="_blank"><span class="fa fa-instagram"></span></a></div>
+      <div class="col"><a class="social-inner" href="https://plus.google.com/u/0/+PrashantSinghGour" target="_blank"><span class="fa fa-google-plus"></span></a></div>
+      <div class="col"><a class="social-inner" href="https://www.linkedin.com/in/prashant-singh-gour/" target="_blank"><span class="fa fa-linkedin"></span></a></div>
+    </div>
+  </footer>
