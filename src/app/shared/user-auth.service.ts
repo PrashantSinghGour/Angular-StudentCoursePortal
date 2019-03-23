@@ -10,6 +10,8 @@ declare var firebase: any;
 })
 export class UserAuthService {
 
+ 
+
   constructor(private router: Router) { }
 
   Form = new FormGroup(
@@ -37,8 +39,10 @@ export class UserAuthService {
       this.router.navigate(['signin']);
   }
   logout() {
+    
     firebase.auth().signOut();
-   
+    localStorage.removeItem('loggedin');
+    
   }
  
 
@@ -56,18 +60,23 @@ export class UserAuthService {
         window.alert(error.message)
         // ...
       });
-      console.log(user.Email);
-      console.log(user.Password);
+    
      
       this.router.navigate(['student']);
       
   }
   isAuthenticated() {
-    var user = firebase.auth().currentUser;
+    var user = ((firebase.auth().currentUser) || localStorage.getItem('loggedin'));
+    console.log(user);
     if (user) {
+      
+      localStorage.setItem('loggedin','true');
+
       return true;
     }
     else {
+      this.router.navigate(['signin']);
+      
       return false;
     }
   }
