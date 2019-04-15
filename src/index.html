@@ -6,11 +6,24 @@
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script
+  src="https://code.jquery.com/jquery-3.4.0.js"
+  integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
+  crossorigin="anonymous"></script>
+
+  <script> 
+      $(window).on('load',function() {
+       $('.preloader').hide();
+    });
+  </script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
+   
   <app-root></app-root>
   
+  <div class="preloader"></div>
+
   <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
 <script>
   // Initialize Firebase
